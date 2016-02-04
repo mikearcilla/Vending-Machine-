@@ -1,0 +1,81 @@
+/*
+ ============================================================================
+ Name        : V00816219a2p1.c
+ Author      : Michael Arcilla
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(void) {
+	int item = 0;
+	int change = 0;
+	int quart = 0;
+	int dime = 0;
+	int nick = 0;
+	int balance = 0;
+	int value = 0;
+
+do{
+	printf("Enter cost of item (in cents):");
+	fflush(stdout);
+	scanf("%d", &item);
+		if( item < 0 ){
+			return 0 ;
+			}
+		if(item % 5 != 0){
+			printf("Price of item must be a multiple of 5 cents.\n");
+		}
+	}while ( item % 5 != 0 );
+
+	printf("Current balance: %d\n", balance );
+
+do{
+	printf("Enter coin value (200, 100, 25, 10, 5): ");
+	fflush(stdout);
+	scanf("%d", &value);
+		if ( value % 5 != 0) {
+			printf("Invalid Coin, try again.\n");
+			printf("Current balance: %d\n", balance);
+			} else {
+				balance = balance + value;
+				printf("Current balance: %d\n", balance);
+			}
+		}
+	while ( item > balance );
+
+printf("You paid %d cents for something that costs %d cents.\n", balance, item);
+
+change = balance - item;
+	if (change == 0){
+		printf("No change due.\n");
+	} else {
+		printf("Change: "); // %d cents in change.\n", change);
+		quart = change / 25;
+		printf("%d Quarters ", quart);
+
+		if(quart != 0){
+			change = change - (quart * 25);
+		}
+		dime = change / 10;
+
+		printf("%d Dimes ", dime);
+		if(dime != 0){
+			change = change - (dime * 10);
+		}
+		nick = change / 5;
+		printf("%d Nickels ", nick);
+
+		if(nick != 0){
+			change = change - (nick * 10);
+		}
+}
+printf("\n");
+
+	return EXIT_SUCCESS;
+}
